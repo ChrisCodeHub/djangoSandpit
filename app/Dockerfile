@@ -10,12 +10,9 @@ ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=1000
 
-# Create the group and user
+# # Create the group and user
 RUN groupadd --gid $USER_GID $USERNAME && \
     useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
-
-# Set the created user as the default user
-USER $USERNAME
 
 # set work directory
 WORKDIR /usr/src/app
@@ -28,6 +25,9 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
+
+# Set the created user as the default user
+USER $USERNAME
 
 # copy project
 COPY . .

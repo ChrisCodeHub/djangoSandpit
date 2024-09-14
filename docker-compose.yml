@@ -5,11 +5,11 @@ services:
     stdin_open: true  # Keep STDIN open even if not attached
     tty: true         # Allocate a pseudo-TTY    
     volumes:
-      - ./app/:/usr/src/app/
+      - ./app/:/usr/src/app/    # map the local app dir into /usr/src/app inside the container
     ports:
-      - 8000:8000
+      - 8000:8000               # expose port 8000 as port 8000
     env_file:
-      - ./.env.dev
+      - ./.env.dev              # the env file for this project
 
 
 #    command: python manage.py runserver 0.0.0.0:8000      
